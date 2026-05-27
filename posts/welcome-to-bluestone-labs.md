@@ -18,11 +18,11 @@ Most of that work stays internal. It solves one team's problem, lives in a priva
 
 There is no formal review process, no approval committee. If it relates to Bluestone PIM and it works, it belongs here.
 
-## The first project: MCP Server
+## The first project: Unofficial PIM MCP
 
 The first project is an unofficial MCP server for Bluestone PIM. MCP (Model Context Protocol) is the standard that lets AI assistants like Claude, Cursor, and others connect to external tools and data sources.
 
-With the Bluestone MCP Server, you can point an AI assistant directly at your Bluestone PIM organisation and interact with your catalogue through natural language:
+With the unofficial Bluestone PIM MCP server, you can point an AI assistant directly at your Bluestone PIM organisation and interact with your catalogue through natural language:
 
 ```bash
 # Ask your AI assistant:
@@ -55,15 +55,15 @@ For chat clients like Claude.ai or ChatGPT, use their dedicated MCP configuratio
 
 That is it. Restart your client and your catalogue is available as context.
 
-[See the full setup guide on the MCP server site.](https://bluestone-mcp-unofficial.vercel.app/connect)
+[See the full setup guide on the unofficial MCP server site.](https://bluestone-mcp-unofficial.vercel.app/connect)
 
 ## What to look forward to
 
-Labs is early. The MCP server is project one. Here is the direction we are heading:
+Labs is early. The unofficial MCP server is project one. Here is the direction we are heading:
 
 **More integration patterns.** Connectors, import/export utilities, and patterns for common Bluestone workflows that teams keep rebuilding from scratch.
 
-**AI-native tools.** The MCP server is the foundation. On top of it: enrichment agents, bulk-edit assistants, automated QA checks for catalogue data quality.
+**AI-native tools.** The unofficial MCP server is the foundation. On top of it: enrichment agents, bulk-edit assistants, automated QA checks for catalogue data quality.
 
 **Community contributions.** If you have built something useful on Bluestone PIM, Labs is the right place for it. The contribution bar is low: open a PR, add your entry to `projects.json`, done.
 
@@ -71,6 +71,6 @@ This blog is where we document what gets built, explain the decisions behind the
 
 ## Get involved
 
-Everything Labs is open source. The Labs landing page and the MCP server are both on GitHub. If you have built something or have an idea, open an issue or a pull request.
+Everything Labs is open source. The Labs landing page and the unofficial MCP server are both on GitHub. If you have built something or have an idea, open an issue or a pull request.
 
 If you are a Bluestone PIM customer, SI partner, or independent builder: this is your space too.

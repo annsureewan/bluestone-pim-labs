@@ -1,11 +1,11 @@
 ---
-title: Trying The Bluestone PIM MCP Server On A Real Catalog
+title: Trying the Unofficial Bluestone PIM MCP Server on a Real Catalog
 date: 2026-04-28
 description: What happens when an AI assistant can browse Bluestone PIM catalogs, compare draft and published data, switch language context, and fetch product images.
 tags: mcp, ai, examples
 author: Viktor Lövgren
 authorUrl: https://github.com/leafleaf90/
-heroImage: /public/posts/trying-the-bluestone-pim-mcp-server-on-a-real-catalog/banner.webp
+heroImage: /public/posts/trying-unofficial-pim-mcp-on-a-real-catalog/banner.webp
 ---
 
 The [unofficial Bluestone PIM MCP server](https://bluestone-mcp-unofficial.vercel.app/connect) is meant to give partners and customers some inspiration. It is a working example of how an AI assistant can connect to Bluestone PIM, but the bigger goal is to help teams build their own versions, aligned with their own workflows, data model, client needs, and guardrails.
@@ -14,7 +14,7 @@ Bluestone PIM has also published its [official communication around MCP](https:/
 
 Think of it as a starting point. Fork it, change the tools, tune the descriptions, deploy it under your own URL, and make it behave the way your team needs it to behave.
 
-The server is intentionally small. The important piece is the reusable pattern: OAuth connection, encrypted session tokens, a remote MCP endpoint, and tool calls that can reach Bluestone PIM safely from an AI client. The current tools are examples on top of that foundation: browse catalogs, list products, switch language context, check published data, fetch a product image, and create products. Treat the rest as a blank canvas for the workflows you want to build.
+The unofficial server is intentionally small. The important piece is the reusable pattern: OAuth connection, encrypted session tokens, a remote MCP endpoint, and tool calls that can reach Bluestone PIM safely from an AI client. The current tools are examples on top of that foundation: browse catalogs, list products, switch language context, check published data, fetch a product image, and create products. Treat the rest as a blank canvas for the workflows you want to build.
 
 ## Start by naming the source
 
@@ -46,13 +46,13 @@ User: Show me products in Clothes
 Assistant: There is currently one product in the Clothes catalog: T-shirt - Green, type Single, status Draft.
 ```
 
-By default, the server reads working data from Bluestone PIM (MAPI, for those familiar with the Bluestone PIM API structure). That means it can show changes your team has made today, including products that have not been published yet. For enrichment work, that is usually what you want. If you want only live data, ask for published products explicitly.
+By default, the unofficial server reads working data from Bluestone PIM (MAPI, for those familiar with the Bluestone PIM API structure). That means it can show changes your team has made today, including products that have not been published yet. For enrichment work, that is usually what you want. If you want only live data, ask for published products explicitly.
 
 This is a small example, but it shows the basic shape: the assistant is not answering from a static export. It is calling a tool, reading the catalog, and summarizing what it finds.
 
 ## Create a product
 
-The server can also create a product by name:
+The unofficial server can also create a product by name:
 
 ```text
 User: Create "T-shirt - Blue"
@@ -88,13 +88,13 @@ Worth noting: "T-shirt - Yellow" has not been translated to Dutch yet.
 
 The tool returns data. The model notices the pattern. Three product names are localized, one is still in English, so it flags the gap without being asked.
 
-That is a useful shape for future QA tools. The server does not need a special "find missing translations" endpoint to make this possible in small catalogs. It needs to expose enough structured data for the model to reason over. For larger catalogs, a purpose-built audit tool would be better, but the principle is the same.
+That is a useful shape for future QA tools. The unofficial server does not need a special "find missing translations" endpoint to make this possible in small catalogs. It needs to expose enough structured data for the model to reason over. For larger catalogs, a purpose-built audit tool would be better, but the principle is the same.
 
 What is missing today: the assistant can spot the missing translation, but it cannot write the Dutch name back to Bluestone PIM. Update tools are not implemented yet.
 
 ## Compare draft and published data
 
-Bluestone PIM has working data and published data. The MCP server keeps those paths separate, because they answer different questions.
+Bluestone PIM has working data and published data. The unofficial MCP server keeps those paths separate, because they answer different questions.
 
 ```text
 User: Using Bluestone PIM, show me only what's published in Clothes, not drafts
@@ -109,7 +109,7 @@ T-shirt - Red is in draft and not published.
 T-shirt - Yellow is in draft and not published.
 ```
 
-This is the kind of check that is awkward in a normal UI but natural in chat. You can ask what is live, then ask how it differs from working state, and the assistant can keep the thread of the task.
+This is the kind of multi-step comparison that works well in a conversation. You can ask what is live, then ask how it differs from working state, and the assistant keeps the thread of the task.
 
 It also surfaces a practical distinction for builders: read tools should be clear about which layer they use. An enrichment assistant usually wants working state. A storefront QA assistant usually wants published state. A migration assistant may need both.
 
@@ -122,13 +122,13 @@ User: Show me the product image from Bluestone PIM
 Assistant: The image is available. You can open it directly here: T-shirt - Green.
 ```
 
-There is a client limitation hiding behind that simple exchange. MCP can return image content, but Claude Desktop currently shows the image inside the collapsed tool result panel rather than inline in the chat. The server works around this by telling the model to provide the direct image URL, so the user has something useful to click.
+There is a client limitation hiding behind that simple exchange. MCP can return image content, but Claude Desktop currently shows the image inside the collapsed tool result panel rather than inline in the chat. The unofficial server works around this by telling the model to provide the direct image URL, so the user has something useful to click.
 
 That kind of detail matters when designing MCP tools. You are not only shaping data for an API consumer. You are shaping data for a model, a client UI, and a person reading the final answer.
 
 ## Why this matters for partners and customers
 
-The shared server is intentionally modest. It proves the connection pattern: OAuth, encrypted session tokens, a remote MCP endpoint, tool descriptions, response shaping, and a few working Bluestone PIM operations.
+The shared unofficial server is intentionally modest. It proves the connection pattern: OAuth, encrypted session tokens, a remote MCP endpoint, tool descriptions, response shaping, and a few working Bluestone PIM operations.
 
 The interesting part is what a team can build from there:
 

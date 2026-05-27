@@ -40,6 +40,7 @@ async function run() {
     fs.unlinkSync(file);
     const rel = f => path.relative(process.cwd(), f);
     console.log(`  ${rel(file)} → ${rel(webpOut)} (original deleted)`);
+  }
 }
 
 run().catch(err => { console.error(err.message); process.exit(1); });

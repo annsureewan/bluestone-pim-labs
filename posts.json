@@ -1,7 +1,23 @@
 [
   {
-    "slug": "trying-the-bluestone-pim-mcp-server-on-a-real-catalog",
-    "title": "Trying The Bluestone PIM MCP Server On A Real Catalog",
+    "slug": "cla-vla-and-validation-reads-unofficial-pim-mcp",
+    "title": "CLA, VLA, and Validation Reads in the Unofficial Bluestone PIM MCP Server",
+    "date": "2026-05-27",
+    "description": "Six new read tools for category level attributes, variant level attributes, and sync validation issues. What they call, where they complement the UI for cross-product QA, and what you can ask in chat.",
+    "tags": [
+      "mcp",
+      "ai",
+      "data-quality",
+      "bluestone-pim"
+    ],
+    "author": "Viktor Lövgren",
+    "authorUrl": "https://github.com/leafleaf90/",
+    "readingTime": "9 min read",
+    "heroImage": "/public/posts/cla-vla-and-validation-reads-unofficial-pim-mcp/banner.webp"
+  },
+  {
+    "slug": "trying-unofficial-pim-mcp-on-a-real-catalog",
+    "title": "Trying the Unofficial Bluestone PIM MCP Server on a Real Catalog",
     "date": "2026-04-28",
     "description": "What happens when an AI assistant can browse Bluestone PIM catalogs, compare draft and published data, switch language context, and fetch product images.",
     "tags": [
@@ -12,7 +28,7 @@
     "author": "Viktor Lövgren",
     "authorUrl": "https://github.com/leafleaf90/",
     "readingTime": "8 min read",
-    "heroImage": "/public/posts/trying-the-bluestone-pim-mcp-server-on-a-real-catalog/banner.webp"
+    "heroImage": "/public/posts/trying-unofficial-pim-mcp-on-a-real-catalog/banner.webp"
   },
   {
     "slug": "welcome-to-bluestone-labs",

@@ -16,7 +16,12 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://labs.bluestonepim.com/blog/trying-the-bluestone-pim-mcp-server-on-a-real-catalog</loc>
+    <loc>https://labs.bluestonepim.com/blog/cla-vla-and-validation-reads-unofficial-pim-mcp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://labs.bluestonepim.com/blog/trying-unofficial-pim-mcp-on-a-real-catalog</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
