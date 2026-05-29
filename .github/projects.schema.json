@@ -13,7 +13,9 @@
       "github": { "type": "string", "pattern": "^https://github\\.com/", "minLength": 1 },
       "status": { "type": "string", "enum": ["live", "beta", "wip", "archived"] },
       "cta": { "type": "string", "minLength": 1 },
-      "icon": { "type": "string", "enum": ["terminal", "template", "default"] }
+      "author": { "type": "string", "minLength": 1 },
+      "authorUrl": { "type": "string", "pattern": "^https://" },
+      "icon": { "type": "string", "enum": ["terminal", "template", "builder", "default"] }
     }
   }
 }

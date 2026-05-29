@@ -11,6 +11,8 @@
   "description": "One or two sentences.",
   "url": "https://your-project.com",
   "github": "https://github.com/your-org/your-repo",
+  "author": "Your Name",
+  "authorUrl": "https://github.com/your-handle",
   "status": "live",
   "cta": "View setup guide",
   "icon": "terminal"
@@ -21,9 +23,13 @@
 
 The project card links to `url` if provided, otherwise falls back to `github`. Include `url` only if your project has a separate landing page or documentation site.
 
+**Optional fields:** `author`, `authorUrl`, `cta`, `icon`, `url`
+
+If `author` is omitted, the card shows the GitHub repo owner as `@username`, linked to their profile.
+
 **`status` options:** `live`, `beta`, `wip`, `archived`
 
-**`icon` options:** `terminal`, `default`
+**`icon` options:** `terminal`, `template`, `builder`, `default`
 
 3. Open a pull request. The `validate-projects.json` GitHub Actions check runs automatically and will catch any schema errors before review.
 

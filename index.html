@@ -132,6 +132,9 @@
     <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <!-- Populated by JS from projects.json -->
     </div>
+    <div id="projects-contribute-row" class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Always shows the open-a-PR invite card -->
+    </div>
   </section>
 
   <!-- Latest from the blog -->
@@ -204,6 +207,7 @@
     const icons = {
       terminal: `<path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>`,
       template: `<path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>`,
+      builder:  `<path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>`,
       default:  `<path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>`
     };
 
@@ -211,9 +215,38 @@
       return `<svg xmlns="http://www.w3.org/2000/svg" class="${classes}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">${icons[key] || icons.default}</svg>`;
     }
 
+    function escapeHtml(value) {
+      return String(value || '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char]));
+    }
+
+    function githubOwner(github) {
+      const match = String(github || '').match(/^https:\/\/github\.com\/([^/]+)\//);
+      return match ? match[1] : null;
+    }
+
+    function projectAuthorHtml(p) {
+      const owner = githubOwner(p.github);
+      const name = p.author || (owner ? `@${owner}` : '');
+      if (!name) return '';
+
+      const url = p.authorUrl || (owner ? `https://github.com/${owner}` : '');
+      const label = escapeHtml(name);
+      const inner = url
+        ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors no-underline">${label}</a>`
+        : label;
+
+      return `<p class="text-xs text-slate-400 dark:text-slate-500 mb-2">By ${inner}</p>`;
+    }
+
     function projectCard(p) {
       return `
-        <a href="${p.url || p.github}" target="_blank" rel="noopener noreferrer"
+        <a href="${escapeHtml(p.url || p.github)}" target="_blank" rel="noopener noreferrer"
           class="card-hover group block bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 no-underline">
           <div class="flex items-start justify-between gap-3 mb-3">
             <div class="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center shrink-0">
@@ -221,12 +254,13 @@
             </div>
             <span class="project-tag tag-live mt-1">Live</span>
           </div>
-          <h3 class="font-semibold text-slate-900 dark:text-slate-100 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-            ${p.name}
+          <h3 class="font-semibold text-slate-900 dark:text-slate-100 mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            ${escapeHtml(p.name)}
           </h3>
-          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">${p.description}</p>
+          ${projectAuthorHtml(p)}
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">${escapeHtml(p.description)}</p>
           <div class="flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400 font-medium">
-            <span>${p.cta || 'Learn more'}</span>
+            <span>${escapeHtml(p.cta || 'Learn more')}</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
             </svg>
@@ -234,27 +268,37 @@
         </a>`;
     }
 
-    function placeholderCard(n) {
-      const isCta = n === 1;
-      const tag = isCta ? 'a' : 'div';
-      const href = isCta ? ' href="https://github.com/bspim-labs/bluestone-pim-labs/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer"' : '';
-      const cursor = isCta ? 'cursor-pointer no-underline group' : 'cursor-default';
-
+    function contributeCard() {
       return `
-        <${tag}${href} class="card-hover placeholder-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/40 rounded-xl p-5 ${cursor}">
+        <a href="https://github.com/bspim-labs/bluestone-pim-labs/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer"
+          class="card-hover placeholder-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/40 rounded-xl p-5 cursor-pointer no-underline group">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+              ${svgIcon('default', 'w-5 h-5 text-slate-400 dark:text-slate-500')}
+            </div>
+            <span class="project-tag tag-planned mt-1">Open</span>
+          </div>
+          <h3 class="font-semibold text-slate-400 dark:text-slate-500 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Your project here</h3>
+          <p class="text-sm text-slate-400 dark:text-slate-600 leading-relaxed">
+            Got an idea for a tool, integration, or utility that would help Bluestone users or partners? Open a PR and add it.
+          </p>
+        </a>`;
+    }
+
+    function plannedPlaceholderCard() {
+      return `
+        <div class="card-hover placeholder-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/40 rounded-xl p-5 cursor-default">
           <div class="flex items-start justify-between gap-3 mb-3">
             <div class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
               ${svgIcon('default', 'w-5 h-5 text-slate-400 dark:text-slate-500')}
             </div>
             <span class="project-tag tag-planned mt-1">Planned</span>
           </div>
-          <h3 class="font-semibold text-slate-400 dark:text-slate-500 mb-2 ${isCta ? 'group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors' : ''}">Your project here</h3>
+          <h3 class="font-semibold text-slate-400 dark:text-slate-500 mb-2">Your project here</h3>
           <p class="text-sm text-slate-400 dark:text-slate-600 leading-relaxed">
-            ${isCta
-              ? 'Got an idea for a tool, integration, or utility that would help Bluestone users or partners? Open a PR and add it.'
-              : 'Labs is a place to ship things and learn what works. More projects are in the works.'}
+            Labs is a place to ship things and learn what works. More projects are in the works.
           </p>
-        </${tag}>`;
+        </div>`;
     }
 
     // Latest blog post
@@ -299,11 +343,11 @@
       .then(projects => {
         const grid = document.getElementById('projects-grid');
         let html = projects.map(projectCard).join('');
-        // Fill to at least 3 cards with placeholders
         for (let i = projects.length; i < 3; i++) {
-          html += placeholderCard(i - projects.length + 1);
+          html += plannedPlaceholderCard();
         }
         grid.innerHTML = html;
+        document.getElementById('projects-contribute-row').innerHTML = contributeCard();
       });
   </script>
 
