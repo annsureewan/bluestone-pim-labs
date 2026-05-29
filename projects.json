@@ -16,10 +16,10 @@
     "status": "live",
     "cta": "Fork template",
     "icon": "template"
-  },  {
+  },
+  {
     "name": "MCP UI Builder",
-    "description": "Builds a small, single-file, persona-shaped web UI on top of the Bluestone PIM MCP server — the kind of demo that proves "SaaS as a toolbox" for analyst and sales conversations. Use when the user wants a Bluestone PIM demo UI for a specific persona (merchandiser quick-edit, supplier portal, store-associate lookup, buyer/category scorecard, content-enrichment workbench, exec dashboard, agentic command bar), wants to extend labs.bluestonepim.com, or talks about agentic / composable / headless / API-only PIM demos. Trigger on terser asks too: "build a quick PIM UI", "show me a [persona] view on Bluestone", "make a demo", "vibecode a thing on top of the PIM MCP".",
-    "url": "",
+    "description": "Skill for building single-file, persona-shaped demo UIs on top of the Bluestone PIM MCP server. Quick prototypes for merchandiser, supplier, and exec dashboard demos.",
     "github": "https://github.com/mortings/bluestone_pim_mcp_ui_builder",
     "status": "live",
     "cta": "View skill",
