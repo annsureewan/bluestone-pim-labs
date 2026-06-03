@@ -7,7 +7,7 @@
     "author": "Viktor Lövgren",
     "authorUrl": "https://github.com/leafleaf90",
     "status": "live",
-    "cta": "View setup guide",
+    "cta": "Project website",
     "icon": "terminal"
   },
   {
@@ -18,7 +18,7 @@
     "author": "Viktor Lövgren",
     "authorUrl": "https://github.com/leafleaf90",
     "status": "live",
-    "cta": "Fork template",
+    "cta": "See an example",
     "icon": "template"
   },
   {
@@ -28,17 +28,17 @@
     "author": "Morten Næss",
     "authorUrl": "https://github.com/mortings",
     "status": "live",
-    "cta": "View skill",
     "icon": "builder"
   },
   {
     "name": "PIM MCP UI",
     "description": "Static HTML persona demos plus a browser MCP proxy. Fork, run locally, and call your catalogue without API keys in the page.",
+    "url": "https://mortings.github.io/pim-agent/",
     "github": "https://github.com/mortings/pim-mcp-ui",
     "author": "Morten Næss",
     "authorUrl": "https://github.com/mortings",
     "status": "live",
-    "cta": "Fork and run locally",
+    "cta": "See an example",
     "icon": "browser"
   }
 ]

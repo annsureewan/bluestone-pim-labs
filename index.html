@@ -267,14 +267,37 @@
       return `<div class="text-xs text-slate-400 dark:text-slate-500 mb-2">By ${nameHtml}</div>`;
     }
 
-    function projectGithubLink(p) {
-      if (!p.github || !p.url || p.url === p.github) return '';
-      return `<a href="${escapeHtml(p.github)}" target="_blank" rel="noopener noreferrer"
-          class="text-xs text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors shrink-0">GitHub</a>`;
+    function githubIconLink(href) {
+      return `<a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository"
+          class="p-1.5 rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+          </svg>
+        </a>`;
+    }
+
+    function projectFooterHtml(p) {
+      if (p.url) {
+        const siteHref = escapeHtml(p.url);
+        return `
+          <div class="mt-auto flex items-center justify-between gap-3">
+            <a href="${siteHref}" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400 font-medium no-underline hover:underline">
+              <span>${escapeHtml(p.cta || 'Project website')}</span>
+              ${ctaArrowHtml()}
+            </a>
+            ${p.github ? githubIconLink(p.github) : ''}
+          </div>`;
+      }
+      if (!p.github) return '';
+      return `
+          <div class="mt-auto flex items-center justify-end">
+            ${githubIconLink(p.github)}
+          </div>`;
     }
 
     function projectCard(p) {
-      const href = escapeHtml(p.url || p.github);
+      const primaryHref = escapeHtml(p.url || p.github);
       return `
         <div class="card-hover group flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5">
           <div class="flex items-start justify-between gap-3 mb-3">
@@ -283,20 +306,13 @@
             </div>
             ${projectStatusTag(p.status)}
           </div>
-          <a href="${href}" target="_blank" rel="noopener noreferrer"
+          <a href="${primaryHref}" target="_blank" rel="noopener noreferrer"
             class="font-semibold text-slate-900 dark:text-slate-100 mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors no-underline">
             ${escapeHtml(p.name)}
           </a>
           ${projectAuthorHtml(p)}
           <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed flex-1 mb-4">${escapeHtml(p.description)}</p>
-          <div class="mt-auto flex items-center justify-between gap-3">
-            <a href="${href}" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400 font-medium no-underline hover:underline">
-              <span>${escapeHtml(p.cta || 'Learn more')}</span>
-              ${ctaArrowHtml()}
-            </a>
-            ${projectGithubLink(p)}
-          </div>
+          ${projectFooterHtml(p)}
         </div>`;
     }
 

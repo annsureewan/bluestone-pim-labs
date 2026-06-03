@@ -48,15 +48,15 @@ Edit `projects.json` and open a PR. The `.github/workflows/validate-projects.yml
   "github": "https://github.com/...",
   "url": "https://...",
   "status": "live",
-  "cta": "View setup guide",
+  "cta": "Project website",
   "icon": "terminal"
 }
 ```
 
-Required: `name`, `description`, `github`, `status`. The card links to `url` if provided, otherwise falls back to `github`.
+Required: `name`, `description`, `github`, `status`. The card links to `url` if provided, otherwise falls back to `github`. Optional `cta` labels the website link (defaults to **Project website**).
 
 Available icons: `terminal`, `template` (layout grid), `builder` (sparkles), `browser` (window), `default` (plus icon). Add more in the `icons` object in `index.html`.
-The page always renders at least 3 cards, filling with placeholders if fewer projects exist.
+The grid lists all projects from the file plus one open **Your project here** card.
 
 ## Content constraints
 

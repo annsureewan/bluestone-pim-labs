@@ -27,7 +27,6 @@ Open a PR to `bluestone-labs-landing` and add an entry to `projects.json`:
   "url": "https://...",
   "github": "https://github.com/bspim-labs/...",
   "status": "live",
-  "cta": "View setup guide",
   "icon": "terminal"
 }
 ```

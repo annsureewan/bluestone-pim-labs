@@ -14,7 +14,6 @@
   "author": "Your Name",
   "authorUrl": "https://github.com/your-handle",
   "status": "live",
-  "cta": "View setup guide",
   "icon": "terminal"
 }
 ```
@@ -24,6 +23,8 @@
 The project card links to `url` if provided, otherwise falls back to `github`. Include `url` only if your project has a separate landing page or documentation site.
 
 **Optional fields:** `author`, `authorUrl`, `cta`, `icon`, `url`
+
+When `url` is set, the footer shows `cta` (defaults to **Project website** if omitted) plus a GitHub icon. GitHub-only projects show the icon on the right (title links to the repo).
 
 If `author` is omitted, the card shows the GitHub repo owner as `@username`, linked to their profile.
 
