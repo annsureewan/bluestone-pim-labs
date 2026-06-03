@@ -29,7 +29,7 @@ If `author` is omitted, the card shows the GitHub repo owner as `@username`, lin
 
 **`status` options:** `live`, `beta`, `wip`, `archived`
 
-**`icon` options:** `terminal`, `template`, `builder`, `default`
+**`icon` options:** `terminal`, `template`, `builder`, `browser`, `default`
 
 3. Open a pull request. The `validate-projects.json` GitHub Actions check runs automatically and will catch any schema errors before review.
 

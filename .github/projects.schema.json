@@ -15,7 +15,7 @@
       "cta": { "type": "string", "minLength": 1 },
       "author": { "type": "string", "minLength": 1 },
       "authorUrl": { "type": "string", "pattern": "^https://" },
-      "icon": { "type": "string", "enum": ["terminal", "template", "builder", "default"] }
+      "icon": { "type": "string", "enum": ["terminal", "template", "builder", "browser", "default"] }
     }
   }
 }

@@ -55,7 +55,7 @@ Edit `projects.json` and open a PR. The `.github/workflows/validate-projects.yml
 
 Required: `name`, `description`, `github`, `status`. The card links to `url` if provided, otherwise falls back to `github`.
 
-Available icons: `terminal`, `template` (layout grid), `default` (plus icon). Add more in the `icons` object in `index.html`.
+Available icons: `terminal`, `template` (layout grid), `builder` (sparkles), `browser` (window), `default` (plus icon). Add more in the `icons` object in `index.html`.
 The page always renders at least 3 cards, filling with placeholders if fewer projects exist.
 
 ## Content constraints

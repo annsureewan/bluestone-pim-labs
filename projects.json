@@ -30,5 +30,15 @@
     "status": "live",
     "cta": "View skill",
     "icon": "builder"
+  },
+  {
+    "name": "PIM MCP UI",
+    "description": "Static HTML persona demos plus a browser MCP proxy. Fork, run locally, and call your catalogue without API keys in the page.",
+    "github": "https://github.com/mortings/pim-mcp-ui",
+    "author": "Morten Næss",
+    "authorUrl": "https://github.com/mortings",
+    "status": "live",
+    "cta": "Fork and run locally",
+    "icon": "browser"
   }
 ]
