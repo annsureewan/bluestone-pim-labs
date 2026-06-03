@@ -32,7 +32,7 @@
   },
   {
     "name": "PIM MCP UI",
-    "description": "Static HTML persona demos plus a browser MCP proxy. Fork, run locally, and call your catalogue without API keys in the page.",
+    "description": "Static HTML persona demos on top of the unofficial Bluestone PIM MCP server, with a browser proxy so pages call your catalogue without API keys in the HTML. Browse the hosted demos or fork and run locally.",
     "url": "https://mortings.github.io/pim-agent/demos.html",
     "github": "https://github.com/mortings/pim-mcp-ui",
     "author": "Morten Næss",
