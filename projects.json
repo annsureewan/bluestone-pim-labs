@@ -33,7 +33,7 @@
   {
     "name": "PIM MCP UI",
     "description": "Static HTML persona demos plus a browser MCP proxy. Fork, run locally, and call your catalogue without API keys in the page.",
-    "url": "https://mortings.github.io/pim-agent/",
+    "url": "https://mortings.github.io/pim-agent/demos.html",
     "github": "https://github.com/mortings/pim-mcp-ui",
     "author": "Morten Næss",
     "authorUrl": "https://github.com/mortings",
