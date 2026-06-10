@@ -181,6 +181,7 @@ function buildHtml(slug, meta, bodyHtml, ogImage, allPosts) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="SrPQ-t1ZwwZnENad1yjV7GCiBOjb5IMjMNvYBvI-UcU" />
   <title>${esc(pageTitle)}</title>
   <meta name="description" content="${esc(desc)}">
   <link rel="canonical" href="${pageUrl}">
